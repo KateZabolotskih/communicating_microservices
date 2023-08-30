@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: platforms-depl
+spec:
+  replicas: 1 #колличество реплик сервиса
+  selector: #выбираем шаблон, которым будем пользоваться (то, что выбираем)
+     matchLabels:
+       app: platformservice
+  template: #определение пода и контейнера, который мы будем использование (то, что деплоим)
+    metadata:
+      labels:
+        app: platformservice
+    spec: #спецификация контейнера
+      containers:
+        - name: platformservice
+          image: katezabolotskh2321/platformservice:latest
